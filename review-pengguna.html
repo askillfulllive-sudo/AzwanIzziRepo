@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review & Testimoni Pengguna | AZWANIZZI SKILLFULL SERVICE</title>
+    <meta name="description"
+        content="Maklum balas & ulasan sebenar daripada pelanggan servis aircond di Kota Kinabalu, Penampang, Likas, Inanam dan sekitarnya. Penilaian 4.9 Bintang.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Asset/Logo/LogoWeb.png">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00a3ff',
+                            dark: '#050b17',
+                            black: '#020408'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020408;
+            color: #f1f5f9;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(11, 19, 41, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(13, 23, 49, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 163, 255, 0.2);
+        }
+
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #ffd700, #ffae00, #ff8800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            box-shadow: 0 4px 20px rgba(0, 163, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 163, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-blue selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <header class="sticky top-0 z-50">
+        <div class="bg-gradient-to-r from-amber-500/25 via-blue-900/70 to-amber-500/20 border-b border-amber-400/30 backdrop-blur-md px-4 py-2 text-xs text-center flex items-center justify-center gap-3 flex-wrap">
+            <span class="inline-flex items-center gap-1 bg-amber-400 text-black px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider animate-pulse">
+                <i class="fa-solid fa-bolt"></i> SLOT PROMOSI
+            </span>
+            <span class="text-amber-200 font-bold">Kunci Giliran Juruteknik Anda:</span>
+            <span class="text-yellow-300 font-extrabold underline decoration-amber-400">Deposit Serendah RM69 Sahaja!</span>
+            <span class="hidden md:inline text-gray-300">(Ditolak 100% daripada bil akhir • Tiada risiko)</span>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="glass-panel border-b border-white/10 px-4 md:px-8 py-3.5 shadow-2xl">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="index.html#home" class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl overflow-hidden border border-brand-blue/30 shadow-[0_0_15px_rgba(0,163,255,0.4)] flex items-center justify-center bg-brand-dark/80 p-1">
+                        <img src="Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                        <span class="font-heading text-sm md:text-base font-extrabold text-white tracking-wider block leading-tight">SKILLFULL</span>
+                        <span class="text-[9px] text-gray-400 tracking-widest block uppercase">Kota Kinabalu</span>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                        <span>Kembali Ke Laman Utama</span>
+                    </a>
+                    <a href="syarat-tempahan.html" class="hidden sm:flex px-4 py-2 rounded-xl glass-panel hover:text-amber-400 text-amber-300 text-xs font-bold transition items-center gap-1.5">
+                        <i class="fa-solid fa-calendar-check text-amber-400 text-xs"></i>
+                        <span>Syarat Tempahan</span>
+                    </a>
+                    <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20servis." target="_blank" class="btn-gradient px-4 py-2 rounded-xl text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Hantar Review</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20 px-4 max-w-6xl mx-auto space-y-12">
+
+        <!-- Title Section -->
+        <div class="text-center max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/15 border border-yellow-400/30 text-yellow-300 text-xs font-bold uppercase tracking-widest mb-3">
+                <i class="fa-solid fa-star"></i>
+                <span>SUARA ASLI PELANGGAN KAMI</span>
+            </div>
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                REVIEW PENGGUNA <span class="gradient-text-gold">& TESTIMONI SEBENAR</span>
+            </h1>
+            <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+                Koleksi ulasan telus daripada pelanggan kami di sekitar Kota Kinabalu, Penampang, Likas, Inanam, Menggatal dan Sepanggar yang telah menikmati kepakaran servis A.I.S.S.
+            </p>
+        </div>
+
+        <!-- Rating Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-yellow-400 flex items-center justify-center gap-1.5">
+                    <span>4.9</span>
+                    <i class="fa-solid fa-star text-2xl text-yellow-400"></i>
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Purata Penilaian</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-white">
+                    1,500+
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Unit Berjaya Diservis</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-brand-blue">
+                    22+ Thn
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Aircond Journey (2004)</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-emerald-400">
+                    100%
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Jaminan Part Tulen</span>
+            </div>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Review 1 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-brand-blue/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Disahkan</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Aircond bilik tidur langsung tak sejuk, juruteknik A.I.S.S datang tepat masa dijanjikan. Deposit RM69 sangat berbaloi dan ditolak terus dalam bil. Ganti capacitor dan sekarang sejuk beku semula. Sangat profesional!"
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-600/30 text-blue-300 flex items-center justify-center font-bold text-sm border border-blue-400/30">
+                            HZ
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Hj. Mohd Zulkifli</h3>
+                            <span class="text-[10px] text-gray-400">Luyang, Kota Kinabalu</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-brand-blue font-semibold uppercase">Troubleshoot</span>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-yellow-400/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 font-bold border border-yellow-500/30">Grade A</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Pasang 3 unit aircond Inverter untuk rumah baru. Pemasangan paip copper Grade A memang luar biasa kemas — tebal, balutan kemas dan tiada sebarang bunyi getaran paip. Juruteknik sangat amanah dan terangkan cara penjagaan."
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-yellow-600/30 text-yellow-300 flex items-center justify-center font-bold text-sm border border-yellow-400/30">
+                            CW
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Cynthia Wong</h3>
+                            <span class="text-[10px] text-gray-400">Kingfisher Sulaman, Likas</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-yellow-400 font-semibold uppercase">Pemasangan</span>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-emerald-400/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Chemical</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Servis overhaul chemical 3 unit aircond lama. Habuk dan lendir kulat semua dibuang bersih sampai nampak berkilat blower. Lepas servis bil elektrik nampak penurunan ketara sebab kompresor dah tak kerja berat. Memang sangat rekomen!"
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-600/30 text-emerald-300 flex items-center justify-center font-bold text-sm border border-emerald-400/30">
+                            UH
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Ustaz Hafiz</h3>
+                            <span class="text-[10px] text-gray-400">Penampang Baru</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-emerald-400 font-semibold uppercase">Servis Kimia</span>
+                </div>
+            </div>
+
+            <!-- Review 4 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-brand-blue/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">Komersial</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Kami lantik A.I.S.S uruskan 8 unit aircond pejabat kami. Sangat profesional, kerja senyap tanpa ganggu staf kami bekerja. Penerangan kerosakan diberi detail, resit telus dan harga amat berpatutan berbanding pasaran."
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-indigo-600/30 text-indigo-300 flex items-center justify-center font-bold text-sm border border-indigo-400/30">
+                            ML
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Madam Lim (Pengurus)</h3>
+                            <span class="text-[10px] text-gray-400">Kolombong Industrial</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-indigo-300 font-semibold uppercase">Maintenance</span>
+                </div>
+            </div>
+
+            <!-- Review 5 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-cyan-400/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30">Kalis Bocor</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Dah 2 kali panggil kontraktor lain gas asyik hilang lepas sebulan. A.I.S.S buat ujian tekanan (pressure test), baiki punca bocor dan bagi waranti kalis bocor 3 tahun untuk gas R32. Sekarang dah 10 bulan sejuk padu tanpa masalah!"
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-cyan-600/30 text-cyan-300 flex items-center justify-center font-bold text-sm border border-cyan-400/30">
+                            FD
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Farhan Danial</h3>
+                            <span class="text-[10px] text-gray-400">Sepanggar, KK</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-cyan-300 font-semibold uppercase">Gas & Leaking</span>
+                </div>
+            </div>
+
+            <!-- Review 6 -->
+            <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-pink-400/50 transition duration-300 group">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-yellow-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 font-bold border border-pink-500/30">Klinik</span>
+                    </div>
+                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                        "Aircond cassette bilik rawatan klinik mati mengejut. Panggil A.I.S.S, technician tiba pantas dengan kelengkapan lengkap. Ganti PCB & room sensor, unit terus berfungsi elok. Kerja bersih, cepat dan beramanah. Terima kasih!"
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pink-600/30 text-pink-300 flex items-center justify-center font-bold text-sm border border-pink-400/30">
+                            DR
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-xs">Dr. Siti Rohani</h3>
+                            <span class="text-[10px] text-gray-400">Damai Specialist, KK</span>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-pink-300 font-semibold uppercase">Cassette Unit</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Banner WhatsApp Feedback -->
+        <div class="glass-card rounded-3xl p-8 border border-white/15 bg-gradient-to-r from-blue-900/40 via-black to-amber-900/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-white">Pernah Menggunakan Servis Kami?</h2>
+                <p class="text-xs text-gray-300 mt-1">Kongsi maklum balas anda terus ke WhatsApp kami dan bantu pelanggan lain di Sabah membuat pilihan tepat!</p>
+            </div>
+            <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda." target="_blank" class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition shadow-lg flex items-center gap-2 shrink-0">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Hantar Review WhatsApp</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-white/10 py-10 px-4 text-center mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <div class="w-16 h-16 mb-3 rounded-2xl overflow-hidden border border-brand-blue/30 flex items-center justify-center bg-brand-dark/80 p-1">
+                <img src="Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain" />
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white">AZWANIZZI SKILLFULL SERVICE</h3>
+            <p class="text-xs text-brand-blue uppercase mt-1">Air-Conditioner Maintenance • Kota Kinabalu</p>
+            <div class="flex gap-4 text-xs text-gray-400 my-4">
+                <a href="index.html" class="hover:text-brand-blue">Home</a>
+                <a href="syarat-tempahan.html" class="hover:text-brand-blue">Syarat Tempahan</a>
+                <a href="review-pengguna.html" class="text-yellow-400 font-bold">Review Pengguna</a>
+                <a href="index.html#contact" class="hover:text-brand-blue">Hubungi Kami</a>
+            </div>
+            <p class="text-xs text-gray-500">&copy; 2026 AZWANIZZI SKILLFULL SERVICE (A.I.S.S). Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
