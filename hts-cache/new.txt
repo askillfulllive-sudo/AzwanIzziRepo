@@ -1,0 +1,4 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+17:46:48	665/665	---MCZ	200	added ('OK')	text/plain	date:Tue,%2029%20Sep%202026%2009:46:47%20GMT	https://a.azwanizziskillfullservice.workers.dev/robots.txt		(from )
+17:46:48	123126/123126	---MCZ	200	added ('OK')	text/html	date:Tue,%2029%20Sep%202026%2009:46:47%20GMT	https://a.azwanizziskillfullservice.workers.dev/	E:/azwan%20izzi%20new/izzi/a.azwanizziskillfullservice.workers.dev/index.html	(from )
+17:46:48	102025/102025	---M-Z	200	added ('OK')	text/css	date:Mon,%2027%20Mar%202023%2017:46:59%20GMT	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css	E:/azwan%20izzi%20new/izzi/cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css	(from https://a.azwanizziskillfullservice.workers.dev/)

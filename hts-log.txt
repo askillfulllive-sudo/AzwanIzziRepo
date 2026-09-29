@@ -1,0 +1,17 @@
+HTTrack3.50-4 launched on Tue, 29 Sep 2026 17:46:44 at https://a.azwanizziskillfullservice.workers.dev/#home +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2%f#f -F "Mozilla/5.0 (compatible; HTTrack; +https://www.httrack.com/)" -%F "<!-- Mirrored from {url} by HTTrack Website Copier/3.x [XR&CO], {date} -->" -%l "en, *" https://a.azwanizziskillfullservice.workers.dev/#home -O1 "E:\azwan izzi new\izzi" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+17:46:48	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link primary/robots.txt (from primary/primary)
+17:46:48	Info: 	Retry after error -5 (Unable to get server's address: No such host is known. ) at link primary/home (from primary/primary)
+17:46:48	Info: 	Retry after error -5 (Unable to get server's address: unknown error) at link primary/home (from primary/primary)
+17:46:48	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link primary/home (from primary/primary)
+
+HTTrack Website Copier/3.50-4 mirror complete in 4 seconds : 7 links scanned, 2 files written (225151 bytes overall) [43521 bytes received at 10880 bytes/sec], 225816 bytes transferred using HTTP compression in 3 files, ratio 18%
+(2 errors, 0 warnings, 2 messages)
+(1 links failed to transfer, so the mirror is incomplete)
+(Some links above the start directory were not mirrored. Pass -B (--can-go-up-and-down) to mirror them.)
