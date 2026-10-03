@@ -2501,7 +2501,7 @@
                 <div class="glass-card p-5 rounded-2xl text-center border border-white/10">
                     <div
                         class="text-3xl sm:text-4xl font-heading font-black text-yellow-400 flex items-center justify-center gap-1">
-                        <span>4.9</span>
+                        <span id="homeAvgRatingDisplay">4.9</span>
                         <i class="fa-solid fa-star text-xl text-yellow-400"></i>
                     </div>
                     <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Purata
@@ -2543,7 +2543,7 @@
                     </div>
                     <h4 class="text-base font-bold text-white mb-1">Ruangan Testimoni & Ulasan Pelanggan</h4>
                     <p class="text-xs text-gray-400 max-w-md mx-auto leading-relaxed">
-
+                        Mohon bersabar, ulasan pelanggan akan dikemaskini tidak lama lagi.
                     </p>
                 </div>
             </div>
@@ -7526,6 +7526,13 @@
                         </div>
                     `;
                 }).join('');
+
+                // Kemaskini Purata Penilaian Sebenar di Laman Utama
+                const avgRatingEl = document.getElementById('homeAvgRatingDisplay');
+                if (avgRatingEl && reviews && reviews.length > 0) {
+                    const totalRating = reviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0);
+                    avgRatingEl.innerText = (totalRating / reviews.length).toFixed(1);
+                }
             } else {
                 grid.innerHTML = `
                     <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 px-4 glass-card rounded-3xl border border-white/10 shadow-lg">
@@ -7534,10 +7541,12 @@
                         </div>
                         <h4 class="text-base font-bold text-white mb-1">Ruangan Testimoni & Ulasan Pelanggan</h4>
                         <p class="text-xs text-gray-400 max-w-md mx-auto leading-relaxed">
-                            Mohon Maaf, ulasan pelanggan akan dikemaskini tidak lama lagi.
+                            Mohon bersabar, ulasan pelanggan akan dikemaskini tidak lama lagi.
                         </p>
                     </div>
                 `;
+                const avgRatingEl = document.getElementById('homeAvgRatingDisplay');
+                if (avgRatingEl) avgRatingEl.innerText = '5.0';
             }
         }
 

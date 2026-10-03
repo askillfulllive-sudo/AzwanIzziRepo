@@ -377,7 +377,13 @@ function renderDashboard() {
     setText('kpiDepositCollected', 'RM ' + totalDeposit.toFixed(2));
     setText('kpiTotalSales', 'RM ' + totalSales.toLocaleString('en-US', { minimumFractionDigits: 2 }));
     setText('kpiTotalTechs', techs.length + ' Ahli');
-    setText('kpiTotalReviews', reviews.length + ' Ulasan (4.9⭐)');
+    // Kira Purata Penilaian Sebenar mengikut rekod ulasan admin
+    let avgRating = '5.0';
+    if (reviews.length > 0) {
+        const totalRating = reviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0);
+        avgRating = (totalRating / reviews.length).toFixed(1);
+    }
+    setText('kpiTotalReviews', `${avgRating} ⭐ (${reviews.length} Ulasan)`);
 
     // Recent Bookings Feed (Top 5)
     const recentList = document.getElementById('recentBookingsList');
@@ -671,6 +677,7 @@ function exportBookingsCSV() {
 // 6. FIREBASE REALTIME DATABASE & REVIEWS CONTROLLER
 // ==========================================
 const FIREBASE_RTDB_URL = 'https://skillfull-e5fb3-default-rtdb.asia-southeast1.firebasedatabase.app';
+const AISS_ADMIN_KEY = 'AISS_ADMIN_2026';
 
 let currentReviewFormat = 'text'; // 'text' | 'image'
 let currentReviewImageBase64 = null;
@@ -679,14 +686,18 @@ let isFirebaseConnected = false;
 const firebaseService = {
     async checkConnection() {
         try {
-            const res = await fetch(`${FIREBASE_RTDB_URL}/.json?shallow=true`, { method: 'GET' });
+            const res = await fetch(`${FIREBASE_RTDB_URL}/reviews.json?shallow=true`, { method: 'GET' });
             if (res.ok) {
                 isFirebaseConnected = true;
                 updateFirebaseBadge(true);
                 return true;
+            } else if (res.status === 401) {
+                isFirebaseConnected = false;
+                updateFirebaseBadge(false, 'Rules Dikunci (401)');
+                return false;
             } else {
                 isFirebaseConnected = false;
-                updateFirebaseBadge(false, 'Rules Diperlukan');
+                updateFirebaseBadge(false, `HTTP ${res.status}`);
                 return false;
             }
         } catch (e) {
@@ -699,6 +710,11 @@ const firebaseService = {
     async getReviews() {
         try {
             const res = await fetch(`${FIREBASE_RTDB_URL}/reviews.json`);
+            if (res.status === 401) {
+                isFirebaseConnected = false;
+                updateFirebaseBadge(false, 'Rules Dikunci (401)');
+                return null;
+            }
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             if (!data) return [];
@@ -716,11 +732,18 @@ const firebaseService = {
 
     async saveReview(review) {
         try {
+            // Tanam adminKey secara automatik ke dalam data ulasan untuk melepasi Firebase Rules
+            const payload = { ...review, adminKey: AISS_ADMIN_KEY };
             const res = await fetch(`${FIREBASE_RTDB_URL}/reviews.json`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(review)
+                body: JSON.stringify(payload)
             });
+            if (res.status === 401) {
+                isFirebaseConnected = false;
+                updateFirebaseBadge(false, 'Tidak Dibenarkan (401)');
+                return { success: false, unauthorized: true, error: '401 Unauthorized' };
+            }
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             return { success: true, firebaseKey: data.name };
@@ -733,13 +756,22 @@ const firebaseService = {
     async updateReview(firebaseKey, updates) {
         if (!firebaseKey) return;
         try {
-            await fetch(`${FIREBASE_RTDB_URL}/reviews/${firebaseKey}.json`, {
+            // Tanam adminKey secara automatik ke dalam kemaskini untuk melepasi Firebase Rules
+            const payload = { ...updates, adminKey: AISS_ADMIN_KEY };
+            const res = await fetch(`${FIREBASE_RTDB_URL}/reviews/${firebaseKey}.json`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updates)
+                body: JSON.stringify(payload)
             });
+            if (res.status === 401) {
+                isFirebaseConnected = false;
+                updateFirebaseBadge(false, 'Tidak Dibenarkan (401)');
+                return { status: 401 };
+            }
+            return { ok: res.ok };
         } catch (e) {
             console.warn('Firebase updateReview error:', e.message);
+            return { error: e.message };
         }
     },
 
@@ -763,7 +795,7 @@ function updateFirebaseBadge(connected, note = '') {
         badge.innerHTML = '<i class="fa-solid fa-cloud-check text-emerald-400"></i> Firebase RTDB: Terhubung';
     } else {
         badge.className = 'text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold flex items-center gap-1.5';
-        badge.innerHTML = `<i class="fa-solid fa-cloud-arrow-up text-amber-400"></i> Firebase: ${note || 'Perlu Set Rules'}`;
+        badge.innerHTML = `<i class="fa-solid fa-cloud-arrow-up text-amber-400"></i> Firebase: ${note || 'Offline'}`;
     }
 }
 
@@ -1085,28 +1117,43 @@ async function deleteReview(revId) {
 // Fungsi Muat Naik Semua Ulasan ke Firebase RTDB
 async function syncAllReviewsToFirebase() {
     const reviews = state.getReviews();
+    if (reviews.length === 0) {
+        showToast('Tiada ulasan dalam simpanan tempatan untuk dimuat naik.', 'info');
+        const connected = await firebaseService.checkConnection();
+        if (!connected) openFirebaseRulesModal();
+        return;
+    }
+
     showToast('Memulakan penyegerakan semua ulasan ke Firebase...', 'info');
 
     let successCount = 0;
+    let unauthorized = false;
+
     for (const r of reviews) {
         if (!r.firebaseKey) {
             const res = await firebaseService.saveReview(r);
             if (res.success) {
                 r.firebaseKey = res.firebaseKey;
                 successCount++;
+            } else if (res.unauthorized) {
+                unauthorized = true;
             }
         }
     }
 
     state.saveReviews(reviews);
-    if (successCount > 0) {
+    if (unauthorized) {
+        showToast('Ralat 401: Sila buka akses Security Rules di Firebase Console!', 'error');
+        openFirebaseRulesModal();
+    } else if (successCount > 0) {
         showToast(`${successCount} ulasan berjaya disegerakkan ke Firebase Realtime Database!`, 'success');
     } else {
         const connected = await firebaseService.checkConnection();
         if (connected) {
             showToast('Semua ulasan telah pun disegerakkan dengan Firebase!', 'success');
         } else {
-            showToast('Gagal berhubung ke Firebase. Pastikan Rules Firebase telah ditetapkan kepada read: true, write: true.', 'error');
+            showToast('Gagal berhubung ke Firebase. Pastikan Rules Firebase telah ditetapkan.', 'error');
+            openFirebaseRulesModal();
         }
     }
     renderReviews();

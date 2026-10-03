@@ -282,7 +282,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
                 <div class="text-4xl font-heading font-black text-yellow-400 flex items-center justify-center gap-1.5">
-                    <span>4.9</span>
+                    <span id="avgRatingDisplay">4.9</span>
                     <i class="fa-solid fa-star text-2xl text-yellow-400"></i>
                 </div>
                 <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Purata
@@ -352,7 +352,7 @@
                 </div>
                 <h3 class="text-base sm:text-lg font-bold text-white mb-2">Ruangan Ulasan & Testimoni Pelanggan</h3>
                 <p class="text-xs text-gray-400 max-w-md mx-auto mb-6 leading-relaxed">
-
+                    Mohon bersabar, ulasan pelanggan akan dikemaskini tidak lama lagi.
                 </p>
                 <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda."
                     target="_blank" rel="noopener noreferrer"
@@ -898,6 +898,13 @@
                 const filterBtnAll = document.getElementById('filter-all');
                 if (filterBtnAll) filterBtnAll.innerText = `Semua Ulasan (${reviews.length})`;
 
+                // Kira Purata Penilaian Sebenar dari ulasan
+                const avgRatingEl = document.getElementById('avgRatingDisplay');
+                if (avgRatingEl) {
+                    const totalRating = reviews.reduce((sum, r) => sum + (Number(r.rating) || 5), 0);
+                    avgRatingEl.innerText = (totalRating / reviews.length).toFixed(1);
+                }
+
                 // Kekalkan kategori aktif jika ada
                 if (typeof filterReviews === 'function') {
                     filterReviews(currentActiveCategory || 'all');
@@ -910,7 +917,7 @@
                         </div>
                         <h3 class="text-base sm:text-lg font-bold text-white mb-2">Ruangan Ulasan & Testimoni Pelanggan</h3>
                         <p class="text-xs text-gray-400 max-w-md mx-auto mb-6 leading-relaxed">
-                            
+                            Mohon bersabar, ulasan pelanggan akan dikemaskini tidak lama lagi.
                         </p>
                         <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda." target="_blank" rel="noopener noreferrer"
                             class="btn-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg">
@@ -920,6 +927,8 @@
                 `;
                 const filterBtnAll = document.getElementById('filter-all');
                 if (filterBtnAll) filterBtnAll.innerText = `Semua Ulasan (0)`;
+                const avgRatingEl = document.getElementById('avgRatingDisplay');
+                if (avgRatingEl) avgRatingEl.innerText = '5.0';
             }
         }
 
