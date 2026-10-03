@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /Aiss-Ops/
+Disallow: /Admin_pages/
+
+Sitemap: https://a.skillfull.workers.dev/sitemap.xml

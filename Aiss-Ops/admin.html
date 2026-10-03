@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.I.S.S ADMIN CONSOLE | Pusat Kawalan Operasi Pentadbir</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Asset/Logo/LogoWeb.png" onerror="this.href='Asset/Logo/LogoWeb.png'">
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00a3ff',
+                            dark: '#050b17',
+                            black: '#020408'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Admin Stylesheet -->
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Auth Guard: Pengesahan Sesi Pentadbir -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('aiss_admin_auth') !== 'true') {
+                    window.location.replace('auth.html');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+
+<body class="bg-[#030712] text-gray-100 flex flex-col min-h-screen">
+
+    <!-- ========================================== -->
+    <!-- 1. TOAST NOTIFICATION CONTAINER            -->
+    <!-- ========================================== -->
+    <div id="toastContainer"></div>
+
+    <!-- ========================================== -->
+    <!-- 2. ADMIN MAIN CONSOLE                      -->
+    <!-- ========================================== -->
+    <div id="adminMain" class="min-h-screen flex flex-col">
+
+        <!-- Top Header Navigation -->
+        <header class="glass-panel sticky top-0 z-40 border-b border-white/10 px-4 sm:px-8 py-3.5 shadow-2xl">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <!-- Brand Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden border border-brand-blue/40 shadow-[0_0_15px_rgba(0,163,255,0.4)] flex items-center justify-center bg-brand-dark p-1">
+                        <img src="../Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain"
+                            onerror="this.onerror=null; this.src='../Asset/Logo/LogoWeb.png';">
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-heading text-base sm:text-lg font-black text-white tracking-wider">A.I.S.S CONSOLE</span>
+                            <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Live Ops
+                            </span>
+                        </div>
+                        <span class="text-xs text-gray-300 font-mono block">Kota Kinabalu • Sabah Aircond Maintenance</span>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-3">
+                    <!-- View Live Website -->
+                    <a href="../Mainpage/index.html" target="_blank" title="Buka Laman Web Utama"
+                        class="hidden sm:flex px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-200 hover:text-white text-sm font-bold transition items-center gap-2 border border-white/10">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm text-brand-blue"></i>
+                        <span>Laman Utama</span>
+                    </a>
+
+                    <!-- Operator Profile Card -->
+                    <div class="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <div class="w-8 h-8 rounded-lg bg-blue-600/30 text-brand-blue flex items-center justify-center font-bold text-xs border border-blue-500/30">
+                            AI
+                        </div>
+                        <div class="hidden md:block text-left">
+                            <span class="text-sm font-bold text-white block leading-tight">Hj. Azwan Izzi</span>
+                            <span class="text-xs text-gray-300 block">Super Admin</span>
+                        </div>
+                    </div>
+
+                    <!-- Logout Button -->
+                    <button id="btnLogout" title="Log Keluar"
+                        class="p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 hover:border-red-500/40 transition active:scale-95 flex items-center justify-center">
+                        <i class="fa-solid fa-power-off text-base"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs Bar -->
+        <div class="bg-black/60 border-b border-white/5 px-4 sm:px-8 py-2 sticky top-[65px] z-30 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                <button data-tab="dashboard" class="admin-nav-btn px-4 py-2.5 rounded-xl text-sm font-bold transition border flex items-center gap-2 shrink-0 bg-brand-blue/20 text-brand-blue border-brand-blue">
+                    <i class="fa-solid fa-chart-pie text-sm"></i>
+                    <span>Dashboard Utama</span>
+                </button>
+
+                <button data-tab="bookings" class="admin-nav-btn px-4 py-2.5 rounded-xl text-sm font-bold transition border border-transparent text-gray-300 hover:text-white flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-calendar-check text-sm"></i>
+                    <span>Tempahan & Slot RM69</span>
+                    <span id="navPendingBadge" class="px-2 py-0.5 rounded-full bg-amber-500/30 text-amber-300 text-xs font-black">Active</span>
+                </button>
+
+                <button data-tab="reviews" class="admin-nav-btn px-4 py-2.5 rounded-xl text-sm font-bold transition border border-transparent text-gray-300 hover:text-white flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-star text-sm text-yellow-400"></i>
+                    <span>Ulasan Pelanggan</span>
+                </button>
+
+                <button data-tab="techs" class="admin-nav-btn px-4 py-2.5 rounded-xl text-sm font-bold transition border border-transparent text-gray-300 hover:text-white flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-network-wired text-sm text-emerald-400"></i>
+                    <span>177 Juruteknik Malaysia</span>
+                </button>
+
+                <button data-tab="settings" class="admin-nav-btn px-4 py-2.5 rounded-xl text-sm font-bold transition border border-transparent text-gray-300 hover:text-white flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-sliders text-sm"></i>
+                    <span>Tetapan Web & Sistem</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Body Content Area -->
+        <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 space-y-8">
+
+            <!-- ==================================================== -->
+            <!-- PANE 1: DASHBOARD UTAMA                              -->
+            <!-- ==================================================== -->
+            <div id="pane_dashboard" class="admin-tab-pane space-y-8">
+                <!-- Welcome Banner -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 bg-gradient-to-r from-blue-900/30 via-black to-emerald-900/20 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-blue/20 text-brand-blue text-xs font-bold mb-3 border border-brand-blue/30">
+                            <i class="fa-solid fa-bolt"></i> STATUS OPERASI KOTA KINABALU
+                        </div>
+                        <h2 class="font-heading text-2xl sm:text-3xl font-black text-white">
+                            Selamat Datang, <span class="gradient-text-blue">Hj. Azwan Izzi</span>
+                        </h2>
+                        <p class="text-sm text-gray-300 mt-2 max-w-2xl leading-relaxed">
+                            Pusat kawalan berpusat untuk mengurus tempahan deposit RM69, maklum balas pelanggan Sabah, dan penugasan 177 juruteknik berdaftar di seluruh daerah.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button onclick="openAddBookingModal()" class="btn-primary px-5 py-3 rounded-2xl text-sm font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Tambah Tempahan</span>
+                        </button>
+                        <button onclick="exportBookingsCSV()" class="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold uppercase tracking-wider border border-white/10 flex items-center gap-2 transition">
+                            <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                            <span>Eksport CSV</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI Metric Cards Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Metric 1: Pending -->
+                    <div class="glass-card p-5 rounded-3xl border border-amber-500/20">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-gray-300 uppercase tracking-wider">Menunggu Pengesahan</span>
+                            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                        </div>
+                        <div id="kpiPending" class="text-3xl sm:text-4xl font-heading font-black text-amber-400">0</div>
+                        <span class="text-xs text-gray-300 block mt-1 font-medium">Perlu tindakan susulan</span>
+                    </div>
+
+                    <!-- Metric 2: Confirmed -->
+                    <div class="glass-card p-5 rounded-3xl border border-blue-500/20">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-gray-300 uppercase tracking-wider">Slot Disahkan (RM69)</span>
+                            <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-brand-blue flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div id="kpiConfirmed" class="text-3xl sm:text-4xl font-heading font-black text-brand-blue">0</div>
+                        <span class="text-xs text-gray-300 block mt-1 font-medium">Deposit RM69 diterima</span>
+                    </div>
+
+                    <!-- Metric 3: Completed -->
+                    <div class="glass-card p-5 rounded-3xl border border-emerald-500/20">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-gray-300 uppercase tracking-wider">Servis Selesai</span>
+                            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                        </div>
+                        <div id="kpiCompleted" class="text-3xl sm:text-4xl font-heading font-black text-emerald-400">0</div>
+                        <span class="text-xs text-gray-300 block mt-1 font-medium">100% Siap Berwaranti</span>
+                    </div>
+
+                    <!-- Metric 4: Deposit Collected -->
+                    <div class="glass-card p-5 rounded-3xl border border-yellow-500/20">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-bold text-gray-300 uppercase tracking-wider">Kutipan Deposit</span>
+                            <div class="w-9 h-9 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                        <div id="kpiDepositCollected" class="text-2xl sm:text-3xl font-heading font-black text-yellow-400">RM 0.00</div>
+                        <span class="text-xs text-gray-300 block mt-1 font-medium">Ditolak dalam bil akhir</span>
+                    </div>
+                </div>
+
+                <!-- Feed Section: Recent Bookings & Quick Techs -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Recent Bookings (8 cols) -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-heading text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-brand-blue"></i>
+                                <span>Tempahan Terkini Masuk</span>
+                            </h3>
+                            <button onclick="switchTab('bookings')" class="text-sm text-brand-blue hover:underline font-bold">Lihat Semua &rarr;</button>
+                        </div>
+
+                        <div id="recentBookingsList" class="space-y-3">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick Network Summary (4 cols) -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-users-gear text-emerald-400"></i>
+                            <span>Rangkaian Pakar</span>
+                        </h3>
+
+                        <div class="glass-card p-6 rounded-3xl border border-white/10 space-y-4">
+                            <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+                                <span class="text-sm text-gray-300">Jumlah Juruteknik Berdaftar:</span>
+                                <span id="kpiTotalTechs" class="text-base font-heading font-black text-white">177 Ahli</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+                                <span class="text-sm text-gray-300">Penilaian Purata Pelanggan:</span>
+                                <span id="kpiTotalReviews" class="text-base font-heading font-black text-yellow-400">4.9 ⭐</span>
+                            </div>
+                            <div class="flex items-center justify-between pb-1">
+                                <span class="text-sm text-gray-300">Kawasan Liputan Aktif:</span>
+                                <span class="text-sm font-bold text-emerald-400">KK, Penampang, Inanam</span>
+                            </div>
+
+                            <button onclick="switchTab('techs')" class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm uppercase tracking-wider border border-white/10 transition mt-2">
+                                Urus 177 Juruteknik &rarr;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- PANE 2: TEMPAHAN & SLOT RM69                         -->
+            <!-- ==================================================== -->
+            <div id="pane_bookings" class="admin-tab-pane hidden space-y-6">
+                <!-- Header & Controls -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="font-heading text-2xl font-black text-white">Senarai Tempahan & Slot Servis</h2>
+                        <p class="text-sm text-gray-300 mt-1">Urus status deposit RM69, tarikh slot, dan tugasan juruteknik di sekitar KK.</p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button onclick="openAddBookingModal()" class="btn-primary px-4 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Tambah Tempahan</span>
+                        </button>
+                        <button onclick="exportBookingsCSV()" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/15 transition" title="Muat Turun Fail CSV">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & Filters Toolbar -->
+                <div class="glass-card p-4 rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-3">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-80">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                        <input type="text" id="bookingSearchInput"
+                            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/40 border border-white/10 text-white text-sm placeholder-gray-400 focus:outline-none focus:border-brand-blue"
+                            placeholder="Cari nama, tel, lokasi atau ID...">
+                    </div>
+
+                    <!-- Status Filter Dropdown -->
+                    <div class="flex items-center gap-2.5 w-full md:w-auto">
+                        <span class="text-sm text-gray-300 shrink-0 font-bold">Tapis Status:</span>
+                        <select id="bookingStatusFilter"
+                            class="px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            <option value="all">Semua Status</option>
+                            <option value="pending">Menunggu (Pending)</option>
+                            <option value="confirmed">Disahkan (Confirmed)</option>
+                            <option value="in_progress">Dalam Servis (In Progress)</option>
+                            <option value="completed">Selesai (Completed)</option>
+                            <option value="cancelled">Dibatalkan (Cancelled)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Bookings Table Container -->
+                <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>No. Rujukan</th>
+                                    <th>Pelanggan</th>
+                                    <th>Lokasi & Servis</th>
+                                    <th>Tarikh Slot</th>
+                                    <th>Deposit / Est.</th>
+                                    <th>Status</th>
+                                    <th class="text-right">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookingsTableBody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- PANE 3: ULASAN & TESTIMONI PELANGGAN                 -->
+            <!-- ==================================================== -->
+            <div id="pane_reviews" class="admin-tab-pane hidden space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2.5 flex-wrap">
+                            <h2 class="font-heading text-2xl font-black text-white">Pengurusan Ulasan & Testimoni</h2>
+                            <span id="firebaseStatusBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-brand-blue border border-brand-blue/30 font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-cloud"></i> Firebase RTDB
+                            </span>
+                        </div>
+                        <p class="text-sm text-gray-300 mt-1">Urus ulasan bertulis & gambar testimoni pelanggan (disimpan di Firebase Realtime Database).</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="syncAllReviewsToFirebase()" title="Muat naik semua ulasan ke Firebase RTDB" class="px-3.5 py-2.5 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/20 text-white transition flex items-center gap-2 border border-white/15">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <span class="hidden sm:inline">Segerak Firebase</span>
+                        </button>
+                        <button onclick="openAddReviewModal()" class="btn-primary px-4 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Tambah Ulasan</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reviews Grid -->
+                <div id="reviewsAdminList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- PANE 4: 177 JURUTEKNIK RANGKAIAN                    -->
+            <!-- ==================================================== -->
+            <div id="pane_techs" class="admin-tab-pane hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="font-heading text-2xl font-black text-white">Direktori 177 Juruteknik Malaysia</h2>
+                        <p class="text-sm text-gray-300 mt-1">Pengkalan data juruteknik pakar mengikut daerah & negeri.</p>
+                    </div>
+                    <button onclick="openAddTechModal()" class="btn-primary px-4 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Daftar Juruteknik</span>
+                    </button>
+                </div>
+
+                <!-- Techs Table -->
+                <div class="glass-panel rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Kod Ahli</th>
+                                    <th>Nama Juruteknik</th>
+                                    <th>No. Telefon</th>
+                                    <th>Kawasan Liputan</th>
+                                    <th>Kategori</th>
+                                    <th>Status</th>
+                                    <th class="text-right">WhatsApp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="techsTableBody">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================================================== -->
+            <!-- PANE 5: TETAPAN WEB & SISTEM                         -->
+            <!-- ==================================================== -->
+            <div id="pane_settings" class="admin-tab-pane hidden space-y-8">
+                <div>
+                    <h2 class="font-heading text-2xl font-black text-white">Tetapan Web & Pentadbir</h2>
+                    <p class="text-sm text-gray-300 mt-1">Konfigurasi teks promosi slot, kadar deposit, nombor WhatsApp, dan kata laluan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Left: Site Configuration -->
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-5">
+                        <h3 class="font-heading text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-brand-blue"></i>
+                            <span>Kawalan Bar Promosi Slot Panas</span>
+                        </h3>
+
+                        <form onsubmit="saveSiteSettings(event)" class="space-y-4">
+                            <div class="flex items-center justify-between p-4 rounded-2xl bg-black/40 border border-white/10">
+                                <div>
+                                    <span class="text-sm font-bold text-white block">Papar Bar Slot Panas Di Atas Laman</span>
+                                    <span class="text-xs text-gray-300">Aktifkan pengumuman deposit RM69 di bahagian paling atas.</span>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="settingAnnToggle" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                                </label>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-300 mb-1.5">Teks Pengumuman Slot Panas:</label>
+                                <input type="text" id="settingAnnText"
+                                    class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-300 mb-1.5">Jumlah Deposit (RM):</label>
+                                    <input type="number" id="settingDeposit" step="1"
+                                        class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-300 mb-1.5">No. WhatsApp Rasmi:</label>
+                                    <input type="text" id="settingWa"
+                                        class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider">
+                                Simpan Tetapan Laman
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right: Security & Password -->
+                    <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-5">
+                        <h3 class="font-heading text-xl font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-key text-yellow-400"></i>
+                            <span>Tukar Kata Laluan Pentadbir</span>
+                        </h3>
+
+                        <form id="changePasswordForm" onsubmit="handlePasswordChange(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-300 mb-1.5">Kata Laluan Semasa:</label>
+                                <input type="password" id="oldPassword" required
+                                    class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-300 mb-1.5">Kata Laluan Baharu (Min. 6 aksara):</label>
+                                <input type="password" id="newPassword" required minlength="6"
+                                    class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-300 mb-1.5">Sahkan Kata Laluan Baharu:</label>
+                                <input type="password" id="confirmPassword" required minlength="6"
+                                    class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 font-bold text-sm uppercase tracking-wider border border-yellow-500/40 transition">
+                                Kemaskini Kata Laluan
+                            </button>
+                        </form>
+
+                        <div class="pt-4 border-t border-white/10">
+                            <button onclick="resetSystemData()" class="text-sm text-red-400 hover:text-red-300 underline font-semibold">
+                                <i class="fa-solid fa-triangle-exclamation mr-1"></i> Tetapkan Semula Data Contoh (Factory Reset)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- 4. MODALS (Popups for Add/Edit/View Details)         -->
+    <!-- ==================================================== -->
+
+    <!-- Modal 1: Booking Details & Status Update -->
+    <div id="bookingDetailsModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                <div>
+                    <span id="m_bkId" class="text-sm font-mono font-bold text-brand-blue">BK-XXXX</span>
+                    <h3 class="font-heading text-xl font-bold text-white">Butiran Tempahan Slot</h3>
+                </div>
+                <button onclick="closeModal('bookingDetailsModal')" class="text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="grid grid-cols-2 gap-4 bg-black/40 p-4 rounded-2xl border border-white/5">
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold">Nama Pelanggan:</span>
+                        <span id="m_bkCust" class="font-bold text-white block text-sm mt-0.5"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold">No. Telefon:</span>
+                        <span id="m_bkPhone" class="font-bold text-emerald-400 block text-sm mt-0.5"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold">Lokasi / Daerah:</span>
+                        <span id="m_bkLoc" class="font-bold text-white block text-sm mt-0.5"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold">Tarikh & Masa:</span>
+                        <span id="m_bkSlot" class="font-bold text-amber-300 block text-sm mt-0.5"></span>
+                    </div>
+                </div>
+
+                <div class="bg-black/40 p-4 rounded-2xl border border-white/5 space-y-2">
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold">Servis & Unit:</span>
+                        <span id="m_bkService" class="font-bold text-white block text-sm mt-0.5"></span>
+                        <span id="m_bkHp" class="text-gray-300 text-xs"></span> • <span id="m_bkQty" class="text-gray-300 text-xs"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-300 block text-xs uppercase font-bold mt-2">Catatan Kerosakan:</span>
+                        <p id="m_bkNotes" class="text-gray-200 text-sm italic mt-0.5"></p>
+                    </div>
+                </div>
+
+                <!-- Update Status & Assign Tech -->
+                <div class="space-y-4 pt-2">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-200 uppercase mb-1.5">Status Tempahan Semasa:</label>
+                        <select id="m_bkStatusSelect" class="w-full px-4 py-3 rounded-xl bg-black border border-white/20 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            <option value="pending">Menunggu (Pending)</option>
+                            <option value="confirmed">Disahkan - Deposit RM69 Diterima (Confirmed)</option>
+                            <option value="in_progress">Dalam Kerja Servis (In Progress)</option>
+                            <option value="completed">Servis Selesai Penuh (Completed)</option>
+                            <option value="cancelled">Dibatalkan (Cancelled)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-200 uppercase mb-1.5">Tugaskan Juruteknik Berdaftar:</label>
+                        <select id="m_bkTechSelect" class="w-full px-4 py-3 rounded-xl bg-black border border-white/20 text-white text-sm focus:outline-none focus:border-brand-blue">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-4 border-t border-white/10">
+                <button onclick="saveBookingStatus()" class="btn-primary flex-1 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider">
+                    Simpan Perubahan
+                </button>
+                <button onclick="printWorkOrder()" class="px-4 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20" title="Cetak Resit / Work Order">
+                    <i class="fa-solid fa-print"></i>
+                </button>
+                <button onclick="sendCustomerWhatsApp(activeBookingId)" class="px-4 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold" title="WhatsApp Pelanggan">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Add Manual Booking -->
+    <div id="addBookingModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <h3 class="font-heading text-xl font-bold text-white">Daftar Tempahan Baharu</h3>
+                <button onclick="closeModal('addBookingModal')" class="text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <form id="addBookingForm" onsubmit="handleAddBookingSubmit(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Nama Pelanggan:</label>
+                    <input type="text" id="newCustName" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="cth: Dr. Hamzah">
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">No. Telefon (WhatsApp):</label>
+                    <input type="tel" id="newCustPhone" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="cth: 0128887766">
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Lokasi / Daerah:</label>
+                    <input type="text" id="newCustLoc" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="cth: Penampang / Likas">
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Jenis Servis:</label>
+                    <select id="newCustService" class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                        <option value="Kimia Overhaul (Full Dismantle)">Kimia Overhaul (Full Dismantle)</option>
+                        <option value="Servis Biasa (Normal Cleaning)">Servis Biasa (Normal Cleaning)</option>
+                        <option value="Troubleshoot / PCB Repair">Troubleshoot / PCB Repair</option>
+                        <option value="Pemasangan Unit Baharu">Pemasangan Unit Baharu</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Tarikh Slot:</label>
+                        <input type="date" id="newCustDate" required class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Masa:</label>
+                        <input type="text" id="newCustTime" required class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="10:00 AM">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Catatan Kerosakan:</label>
+                    <textarea id="newCustNotes" rows="2" class="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="Catatan masalah unit..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary w-full py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider mt-2">
+                    Simpan & Sahkan Tempahan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Add Review (Text OR Upload Image to Firebase) -->
+    <div id="addReviewModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-5 max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <div>
+                    <h3 class="font-heading text-xl font-bold text-white">Tambah Ulasan Pelanggan</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Simpan ulasan ke Firebase Realtime Database</p>
+                </div>
+                <button onclick="closeModal('addReviewModal')" class="text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <form id="addReviewForm" onsubmit="handleAddReviewSubmit(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Nama Pelanggan:</label>
+                    <input type="text" id="newRevName" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="cth: Cikgu Rusdi">
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Kawasan / Daerah:</label>
+                    <input type="text" id="newRevLoc" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="cth: Sepanggar, KK">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Penilaian (Bintang):</label>
+                        <select id="newRevRating" class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-yellow-400 font-bold text-sm focus:outline-none focus:border-brand-blue">
+                            <option value="5">⭐⭐⭐⭐⭐ (5 Bintang)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 Bintang)</option>
+                            <option value="3">⭐⭐⭐ (3 Bintang)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Jenis Servis:</label>
+                        <input type="text" id="newRevService" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="Kimia Overhaul">
+                    </div>
+                </div>
+
+                <!-- PILIHAN FORMAT: TEKS ATAU GAMBAR (PILIH SALAH SATU) -->
+                <div>
+                    <label class="block font-bold text-gray-200 mb-2 text-sm">Pilih Format Testimoni (Pilih Salah Satu):</label>
+                    <div class="grid grid-cols-2 gap-2 p-1.5 bg-black/60 rounded-2xl border border-white/10">
+                        <button type="button" id="btnFormatText" onclick="setReviewFormat('text')"
+                            class="py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 bg-brand-blue text-white shadow-lg">
+                            <i class="fa-solid fa-align-left"></i>
+                            <span>Teks Sahaja</span>
+                        </button>
+                        <button type="button" id="btnFormatImage" onclick="setReviewFormat('image')"
+                            class="py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 text-gray-400 hover:text-white">
+                            <i class="fa-solid fa-image text-amber-400"></i>
+                            <span>Upload Gambar</span>
+                        </button>
+                    </div>
+                    <input type="hidden" id="newRevFormat" value="text">
+                </div>
+
+                <!-- PILIHAN 1: TEKS TESTIMONI SAHAJA -->
+                <div id="sectionRevText">
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Teks Testimoni:</label>
+                    <textarea id="newRevComment" rows="3" class="w-full px-4 py-2.5 rounded-xl bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-brand-blue" placeholder="Masukkan ulasan pelanggan di sini..."></textarea>
+                </div>
+
+                <!-- PILIHAN 2: UPLOAD GAMBAR TESTIMONI SAHAJA (FIREBASE RTDB) -->
+                <div id="sectionRevImage" class="hidden space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <label class="block font-bold text-gray-200 text-sm">Upload Gambar Testimoni:</label>
+                        <span class="text-[11px] text-amber-300 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Disimpan di Firebase
+                        </span>
+                    </div>
+
+                    <!-- Dropzone -->
+                    <div id="revImageDropzone" onclick="document.getElementById('newRevFileInput').click()"
+                        class="border-2 border-dashed border-white/20 hover:border-brand-blue/60 rounded-2xl p-5 text-center cursor-pointer bg-black/40 hover:bg-black/60 transition flex flex-col items-center justify-center gap-2">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/10 text-brand-blue flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Klik untuk pilih gambar (Pilih 1 sahaja)</p>
+                            <p class="text-[11px] text-gray-400 mt-0.5">Screenshot WhatsApp, ulasan pelanggan atau foto hasil servis (PNG, JPG, WebP)</p>
+                        </div>
+                        <input type="file" id="newRevFileInput" accept="image/png, image/jpeg, image/webp" class="hidden" onchange="handleReviewImageSelect(event)">
+                    </div>
+
+                    <!-- Image Preview Card -->
+                    <div id="revImagePreviewCard" class="hidden relative rounded-2xl overflow-hidden border border-white/15 bg-black/70 p-2.5 flex items-center gap-3">
+                        <img id="revImagePreviewImg" src="" alt="Pratonton Gambar" class="w-20 h-20 object-cover rounded-xl border border-white/10 shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <p id="revImageFileName" class="text-xs font-bold text-white truncate">screenshot.png</p>
+                            <p id="revImageFileSize" class="text-[11px] text-emerald-400 font-mono mt-0.5">Dimampatkan untuk Firebase</p>
+                            <span class="inline-flex items-center gap-1 text-[10px] text-brand-blue mt-1 bg-brand-blue/15 px-2 py-0.5 rounded-md font-semibold">
+                                <i class="fa-solid fa-circle-check"></i> Sedia disimpan ke Firebase
+                            </span>
+                        </div>
+                        <button type="button" onclick="removeReviewImage()" class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 flex items-center justify-center text-sm mr-1" title="Padam Gambar">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+
+                    <!-- Optional caption -->
+                    <div>
+                        <label class="block font-semibold text-gray-300 text-xs mb-1">Kapsyen / Nota Ringkas Gambar (Pilihan):</label>
+                        <input type="text" id="newRevImageCaption" class="w-full px-3.5 py-2.5 rounded-xl bg-black border border-white/10 text-white text-xs focus:outline-none focus:border-brand-blue" placeholder="cth: Screenshot maklum balas WhatsApp pelanggan">
+                    </div>
+                </div>
+
+                <button type="submit" id="btnSubmitReview" class="btn-primary w-full py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider mt-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Terbitkan Ulasan</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Lightbox Preview Gambar -->
+    <div id="imageLightboxModal" class="hidden fixed inset-0 z-[60] bg-black/90 backdrop-blur-lg flex items-center justify-center p-4" onclick="closeImageLightbox()">
+        <div class="relative max-w-3xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+            <button onclick="closeImageLightbox()" class="absolute -top-12 right-0 text-white/80 hover:text-white text-2xl p-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Pratonton Penuh" class="max-w-full max-h-[80vh] rounded-2xl border border-white/20 shadow-2xl object-contain">
+            <p id="lightboxCaption" class="text-sm text-gray-300 mt-3 text-center"></p>
+        </div>
+    </div>
+
+    <!-- Modal 4: Add Technician -->
+    <div id="addTechModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <h3 class="font-heading text-xl font-bold text-white">Daftar Juruteknik Rangkaian</h3>
+                <button onclick="closeModal('addTechModal')" class="text-gray-400 hover:text-white p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <form id="addTechForm" onsubmit="handleAddTechSubmit(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">Nama Penuh Juruteknik:</label>
+                    <input type="text" id="newTechName" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm" placeholder="cth: Mohd Azhar">
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-200 mb-1.5 text-sm">No. Telefon:</label>
+                    <input type="tel" id="newTechPhone" required class="w-full px-4 py-3 rounded-xl bg-black border border-white/10 text-white text-sm" placeholder="cth: 0198881122">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Kawasan Liputan:</label>
+                        <input type="text" id="newTechArea" required class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white text-sm" placeholder="cth: Tawau">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Negeri:</label>
+                        <select id="newTechState" class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white text-sm">
+                            <option value="Sabah">Sabah</option>
+                            <option value="Sarawak">Sarawak</option>
+                            <option value="Semenanjung">Semenanjung</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Kategori Ahli:</label>
+                        <select id="newTechTier" class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white font-bold text-sm">
+                            <option value="Pakar Bertauliah">Pakar Bertauliah</option>
+                            <option value="Platinum">Platinum</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Silver">Silver</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-200 mb-1.5 text-sm">Pengalaman:</label>
+                        <input type="text" id="newTechExp" required class="w-full px-3.5 py-3 rounded-xl bg-black border border-white/10 text-white text-sm" placeholder="cth: 6 Tahun">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary w-full py-3.5 rounded-xl text-sm font-bold uppercase tracking-wider mt-2">
+                    Simpan Juruteknik
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden Work Order Receipt Area (For Printing) -->
+    <div id="printReceiptArea" style="display: none;"></div>
+
+    <!-- Scripts -->
+    <script src="admin.js"></script>
+</body>
+
+</html>

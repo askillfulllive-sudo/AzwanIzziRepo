@@ -4,9 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syarat Tempahan & Appointment Aircond | AZWANIZZI SKILLFULL SERVICE</title>
+    <title>Syarat Tempahan & Deposit RM69 | AZWANIZZI SKILLFULL SERVICE (A.I.S.S)</title>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="googleb01f225de7542cde.html">
+    <meta name="google-site-verification" content="b01f225de7542cde">
+    
     <meta name="description"
-        content="Polisi & Syarat Tempahan Temujanji Servis Aircond di Kota Kinabalu, Sabah. Kunci slot pakar juruteknik dengan deposit serendah RM69 sahaja (ditolak penuh dalam bil akhir).">
+        content="Polisi & Syarat Tempahan Temujanji Servis Aircond di Kota Kinabalu, Sabah oleh AZWANIZZI SKILLFULL SERVICE (A.I.S.S / SKILLFULL). Kunci slot pakar juruteknik dengan deposit serendah RM69 sahaja (ditolak penuh dalam bil akhir).">
+    <meta name="keywords" content="AZWANIZZI SKILLFULL SERVICE, A.I.S.S, SKILLFULL, Azwanizzi, Deposit RM69, Syarat Tempahan Aircond KK, Slot Panas Juruteknik Sabah">
+    <link rel="canonical" href="https://a.skillfull.workers.dev/syarat-tempahan.html">
+
+    <!-- Structured Data: Google Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HVACBusiness",
+      "name": "AZWANIZZI SKILLFULL SERVICE",
+      "alternateName": ["A.I.S.S", "SKILLFULL", "AISS", "AZWANIZZI"],
+      "url": "https://a.skillfull.workers.dev/"
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="Asset/Logo/LogoWeb.png">
@@ -134,7 +152,7 @@
                         <i class="fa-solid fa-arrow-left text-xs"></i>
                         <span>Kembali Ke Laman Utama</span>
                     </a>
-                    <a href="review-pengguna.html" class="hidden sm:flex px-4 py-2 rounded-xl glass-panel hover:text-brand-blue text-gray-200 text-xs font-bold transition items-center gap-1.5">
+                    <a href="Review.html" class="hidden sm:flex px-4 py-2 rounded-xl glass-panel hover:text-brand-blue text-gray-200 text-xs font-bold transition items-center gap-1.5">
                         <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
                         <span>Review Pengguna</span>
                     </a>
@@ -360,12 +378,271 @@
             <div class="flex gap-4 text-xs text-gray-400 my-4">
                 <a href="index.html" class="hover:text-brand-blue">Home</a>
                 <a href="syarat-tempahan.html" class="text-amber-400 font-bold">Syarat Tempahan</a>
-                <a href="review-pengguna.html" class="hover:text-brand-blue">Review Pengguna</a>
+                <a href="Review.html" class="hover:text-brand-blue">Review Pengguna</a>
                 <a href="index.html#contact" class="hover:text-brand-blue">Hubungi Kami</a>
             </div>
             <p class="text-xs text-gray-500">&copy; 2026 AZWANIZZI SKILLFULL SERVICE (A.I.S.S). Hak Cipta Terpelihara.</p>
         </div>
     </footer>
+
+    <!-- ====== FLOATING MUSIC PLAYER ====== -->
+    <audio id="aiss-bg-music" loop preload="auto">
+        <source src="Asset/mp3/AISS_Music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Collapsed FAB (Kompak & kemas di bucu kiri bawah) -->
+    <button id="aiss-fab" onclick="aissExpandPlayer()" aria-label="Buka Music Player"
+        title="Klik untuk kawalan muzik A.I.S.S" style="
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 24px !important;
+        z-index: 9999 !important;
+        display: flex;
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 163, 255, 0.5);
+        background: linear-gradient(135deg, #070e24, #0044cc);
+        color: #fff;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 22px rgba(0, 163, 255, 0.45);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <div id="aiss-fab-disc" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; animation: aissSpinDisc 4s linear infinite; animation-play-state: paused;">
+            <i class="fa-solid fa-music" style="color: #38bdf8; font-size: 18px;"></i>
+        </div>
+        <!-- Indicator pulse dot -->
+        <span id="aiss-fab-pulse" style="position: absolute; top: -1px; right: -1px; width: 13px; height: 13px; border-radius: 50%; background: #10b981; border: 2px solid #070d1e; display: none; box-shadow: 0 0 8px #10b981;"></span>
+    </button>
+
+    <!-- Expanded Player Panel (Hanya muncul bila klik FAB) -->
+    <div id="aiss-music-player" style="
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 24px !important;
+        z-index: 9999 !important;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: rgba(7, 14, 32, 0.95);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 163, 255, 0.45);
+        border-radius: 999px;
+        padding: 8px 14px 8px 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.7), 0 0 25px rgba(0,163,255,0.25);
+        user-select: none;
+        animation: aissSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    ">
+        <!-- Vinyl Disc / Minimize Button -->
+        <button onclick="aissCollapsePlayer()" aria-label="Tutup Panel Muzik" title="Klik untuk simpan panel muzik" style="
+            width: 40px; height: 40px;
+            border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; cursor: pointer;
+            box-shadow: 0 0 14px rgba(0,163,255,0.55);
+            transition: transform 0.2s ease;
+        " onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+            <div id="aiss-disc" style="
+                width: 100%; height: 100%;
+                border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                animation: aissSpinDisc 4s linear infinite;
+                animation-play-state: paused;
+            ">
+                <i class="fa-solid fa-compact-disc" style="color:#fff; font-size:20px;"></i>
+            </div>
+        </button>
+
+        <!-- Song Info & Progress Bar -->
+        <div style="display:flex; flex-direction:column; gap:4px; min-width:115px; max-width:145px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <p style="font-size:11px; font-weight:700; color:#e2e8f0; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:0.03em;">
+                    AISS Official Theme
+                </p>
+            </div>
+            <div style="height:3px; background:rgba(255,255,255,0.15); border-radius:99px; overflow:hidden;">
+                <div id="aiss-progress" style="height:100%; width:0%; background:linear-gradient(90deg,#00a3ff,#38bdf8); border-radius:99px; transition:width 0.3s linear;"></div>
+            </div>
+        </div>
+
+        <!-- Play / Pause Button -->
+        <button id="aiss-btn" onclick="aissToggleMusic()" aria-label="Play atau Pause Muzik" title="Play / Pause" style="
+            width: 34px; height: 34px;
+            border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            color: #fff; font-size: 13px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 12px rgba(0,163,255,0.45);
+            transition: transform 0.15s ease;
+        " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <i id="aiss-icon" class="fa-solid fa-play"></i>
+        </button>
+
+        <!-- Mute / Unmute Button -->
+        <button id="aiss-mute-btn" onclick="aissMuteToggle()" aria-label="Mute atau Unmute Muzik" title="Mute / Unmute" style="
+            width: 30px; height: 30px;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #94a3b8; font-size: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.15s ease;
+        " onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='#fff';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#94a3b8';">
+            <i id="aiss-mute-icon" class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <!-- Collapse / Close Button -->
+        <button onclick="aissCollapsePlayer()" aria-label="Tutup panel muzik" title="Tutup panel" style="
+            width: 26px; height: 26px;
+            border-radius: 50%; border: none;
+            background: transparent;
+            color: #64748b; font-size: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: color 0.15s ease;
+        " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#64748b'">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+    </div>
+
+    <style>
+        @keyframes aissSpinDisc {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes aissSlideIn {
+            from { opacity: 0; transform: translateY(14px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+
+    <script>
+        (function() {
+            var aissAudio    = document.getElementById('aiss-bg-music');
+            var aissDisc     = document.getElementById('aiss-disc');
+            var aissFabDisc  = document.getElementById('aiss-fab-disc');
+            var aissIcon     = document.getElementById('aiss-icon');
+            var aissProgress = document.getElementById('aiss-progress');
+            var aissMuteIcon = document.getElementById('aiss-mute-icon');
+            var aissFab      = document.getElementById('aiss-fab');
+            var aissFabPulse = document.getElementById('aiss-fab-pulse');
+            var aissPanel    = document.getElementById('aiss-music-player');
+            var aissPlaying  = false;
+            var aissMuted    = false;
+            var aissExpanded = false;
+
+            if (!aissAudio) return;
+
+            aissAudio.volume = 0.35;
+
+            function aissSetPlaying(state) {
+                aissPlaying = state;
+                if (aissDisc) aissDisc.style.animationPlayState = state ? 'running' : 'paused';
+                if (aissFabDisc) aissFabDisc.style.animationPlayState = state ? 'running' : 'paused';
+                if (aissIcon) aissIcon.className = state ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+                if (aissFabPulse) aissFabPulse.style.display = state ? 'block' : 'none';
+            }
+
+            function aissToggleMusic() {
+                if (aissPlaying) {
+                    aissAudio.pause();
+                    aissSetPlaying(false);
+                } else {
+                    aissAudio.play().then(function() {
+                        aissSetPlaying(true);
+                    }).catch(function(e) { console.warn('AISS play error:', e); });
+                }
+            }
+            window.aissToggleMusic = aissToggleMusic;
+
+            function aissMuteToggle() {
+                aissMuted = !aissMuted;
+                aissAudio.muted = aissMuted;
+                if (aissMuteIcon) {
+                    aissMuteIcon.className = aissMuted ? 'fa-solid fa-volume-xmark text-red-400' : 'fa-solid fa-volume-high';
+                }
+            }
+            window.aissMuteToggle = aissMuteToggle;
+
+            function aissExpandPlayer() {
+                aissExpanded = true;
+                if (aissFab) aissFab.style.display = 'none';
+                if (aissPanel) {
+                    aissPanel.style.display = 'flex';
+                }
+                if (!aissPlaying) {
+                    aissAudio.play().then(function() {
+                        aissSetPlaying(true);
+                    }).catch(function() {});
+                }
+            }
+            window.aissExpandPlayer = aissExpandPlayer;
+
+            function aissCollapsePlayer() {
+                aissExpanded = false;
+                if (aissPanel) aissPanel.style.display = 'none';
+                if (aissFab) {
+                    aissFab.style.display = 'flex';
+                }
+            }
+            window.aissCollapsePlayer = aissCollapsePlayer;
+
+            // --- SISTEM AUTOPLAY SEGERA ---
+            function attemptAutoplay() {
+                var promise = aissAudio.play();
+                if (promise !== undefined) {
+                    promise.then(function() {
+                        aissSetPlaying(true);
+                    }).catch(function() {
+                        aissAudio.muted = true;
+                        aissAudio.play().then(function() {}).catch(function(){});
+
+                        var unlockEvents = ['pointerdown', 'mousedown', 'touchstart', 'scroll', 'wheel', 'mousemove', 'keydown'];
+                        function handleFirstInteraction() {
+                            aissAudio.muted = false;
+                            aissMuted = false;
+                            if (aissMuteIcon) aissMuteIcon.className = 'fa-solid fa-volume-high';
+                            aissAudio.play().then(function() {
+                                aissSetPlaying(true);
+                            }).catch(function(){});
+
+                            unlockEvents.forEach(function(evt) {
+                                window.removeEventListener(evt, handleFirstInteraction, { capture: true });
+                                document.removeEventListener(evt, handleFirstInteraction, { capture: true });
+                            });
+                        }
+
+                        unlockEvents.forEach(function(evt) {
+                            window.addEventListener(evt, handleFirstInteraction, { capture: true, once: true, passive: true });
+                            document.addEventListener(evt, handleFirstInteraction, { capture: true, once: true, passive: true });
+                        });
+                    });
+                }
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                attemptAutoplay();
+            } else {
+                document.addEventListener('DOMContentLoaded', attemptAutoplay);
+            }
+            window.addEventListener('load', function() {
+                if (!aissPlaying) attemptAutoplay();
+            });
+
+            aissAudio.addEventListener('timeupdate', function() {
+                if (aissAudio.duration && aissProgress) {
+                    aissProgress.style.width = ((aissAudio.currentTime / aissAudio.duration) * 100) + '%';
+                }
+            });
+
+            aissAudio.addEventListener('error', function() {
+                console.error('AISS Music: Fail tidak dapat dimuatkan. Semak path: Asset/mp3/AISS_Music.mp3');
+            });
+        })();
+    </script>
+    <!-- ====== END MUSIC PLAYER ====== -->
 
 </body>
 

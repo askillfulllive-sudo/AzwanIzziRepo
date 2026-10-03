@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <title>A.I.S.S Ops Redirector</title>
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('aiss_admin_auth') === 'true') {
+                    window.location.replace("admin.html");
+                } else {
+                    window.location.replace("auth.html");
+                }
+            } catch (e) {
+                window.location.replace("auth.html");
+            }
+        })();
+    </script>
+</head>
+<body style="background-color: #030712; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <p>Memuatkan A.I.S.S Operations...</p>
+</body>
+</html>

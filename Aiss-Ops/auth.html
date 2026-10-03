@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG MASUK PENTADBIR | AZWANIZZI SKILLFULL SERVICE (A.I.S.S)</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Asset/Logo/LogoWeb.png" onerror="this.href='Asset/Logo/LogoWeb.png'">
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00a3ff',
+                            dark: '#050b17',
+                            black: '#020408'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Admin Stylesheet -->
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Auth Guard: Jika sudah ada sesi aktif, terus ke admin.html -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem('aiss_admin_auth') === 'true') {
+                    window.location.replace('admin.html');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+
+<body class="bg-[#030712] text-gray-100 flex items-center justify-center min-h-screen p-4 relative overflow-hidden">
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Ambient Glowing Background -->
+    <div class="absolute w-[500px] h-[500px] bg-brand-blue/15 rounded-full blur-[140px] pointer-events-none -top-20 -left-20"></div>
+    <div class="absolute w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[130px] pointer-events-none -bottom-20 -right-20"></div>
+
+    <!-- Login Container Card -->
+    <div class="w-full max-w-lg glass-panel p-8 sm:p-11 rounded-3xl border border-cyan-500/30 shadow-[0_25px_70px_rgba(0,0,0,0.95)] relative z-10 backdrop-blur-2xl">
+        
+        <!-- Brand Header -->
+        <div class="text-center mb-9">
+            <div class="w-24 h-24 mx-auto rounded-3xl p-2.5 bg-brand-dark/90 border border-brand-blue/40 shadow-[0_0_30px_rgba(0,163,255,0.45)] mb-5 flex items-center justify-center">
+                <img src="../Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain"
+                    onerror="this.onerror=null; this.src='../Asset/Logo/LogoWeb.png';">
+            </div>
+            <h1 class="font-heading text-2xl sm:text-3xl font-black text-white tracking-wider">
+                A.I.S.S <span class="gradient-text-blue">CONSOLE</span>
+            </h1>
+            <p class="text-sm text-gray-300 mt-2 uppercase tracking-widest font-bold">
+                Pusat Kawalan Operasi Pentadbir
+            </p>
+            <div class="w-20 h-1.5 bg-gradient-to-r from-blue-500 via-yellow-400 to-emerald-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="authLoginForm" class="space-y-5">
+            <div>
+                <label for="authUsername" class="block text-sm font-bold text-gray-200 uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-user-shield text-brand-blue mr-1.5 text-base"></i> Nama Pengguna
+                </label>
+                <input type="text" id="authUsername" required autocomplete="username"
+                    class="w-full px-4 py-3.5 rounded-2xl bg-black/60 border border-white/20 text-white text-base placeholder-gray-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 transition"
+                    placeholder="Masukkan ID Pentadbir (cth: admin)">
+            </div>
+
+            <div>
+                <label for="authPassword" class="block text-sm font-bold text-gray-200 uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-key text-yellow-400 mr-1.5 text-base"></i> Kata Laluan
+                </label>
+                <div class="relative">
+                    <input type="password" id="authPassword" required autocomplete="current-password"
+                        class="w-full pl-4 pr-12 py-3.5 rounded-2xl bg-black/60 border border-white/20 text-white text-base placeholder-gray-500 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/30 transition"
+                        placeholder="••••••••••••">
+                    <button type="button" id="togglePasswordBtn" title="Papar/Sembunyi Kata Laluan"
+                        class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-base p-1">
+                        <i class="fa-solid fa-eye" id="toggleEyeIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs sm:text-sm text-gray-400 pt-1">
+                <label class="flex items-center gap-2 cursor-pointer select-none">
+                    <input type="checkbox" id="authRememberMe" checked class="w-4 h-4 rounded bg-black border-white/30 text-brand-blue focus:ring-0">
+                    <span class="text-gray-300 font-semibold">Ingat peranti ini</span>
+                </label>
+                <span class="text-gray-400 font-mono text-xs">Ver 2.6 (2026)</span>
+            </div>
+
+            <button type="submit" id="authSubmitBtn"
+                class="btn-primary w-full py-4 rounded-2xl font-heading font-extrabold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 mt-5 shadow-xl shadow-blue-500/25 active:scale-95 transition">
+                <i class="fa-solid fa-lock-open text-base"></i>
+                <span>Log Masuk Pentadbir</span>
+            </button>
+        </form>
+
+        <!-- Security Footer Note -->
+        <div class="mt-9 pt-6 border-t border-white/10 text-center space-y-2">
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium">
+                <i class="fa-solid fa-shield-halved text-emerald-400 mr-1.5 text-sm"></i>
+                Akses selamat disulitkan. Hanya pegawai pentadbir AZWANIZZI SKILLFULL SERVICE dibenarkan.
+            </p>
+            <p class="text-xs text-amber-300 font-mono mt-1 font-bold">Default ID: <span class="text-white underline">admin</span> • Pass: <span class="text-white underline">aiss2026</span></p>
+        </div>
+    </div>
+
+    <!-- Client-Side Authentication Script -->
+    <script>
+        const DEFAULT_AUTH = {
+            username: 'admin',
+            password: 'aiss2026',
+            displayName: 'Azwan Izzi (Chief Ops)',
+            role: 'Super Admin'
+        };
+
+        // Pastikan default user wujud dalam localStorage
+        if (!localStorage.getItem('aiss_admin_user')) {
+            localStorage.setItem('aiss_admin_user', JSON.stringify(DEFAULT_AUTH));
+        }
+
+        // Toggle Password Visibility
+        const toggleBtn = document.getElementById('togglePasswordBtn');
+        const passInput = document.getElementById('authPassword');
+        const eyeIcon = document.getElementById('toggleEyeIcon');
+        if (toggleBtn && passInput && eyeIcon) {
+            toggleBtn.addEventListener('click', () => {
+                const isPassword = passInput.getAttribute('type') === 'password';
+                passInput.setAttribute('type', isPassword ? 'text' : 'password');
+                eyeIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+            });
+        }
+
+        // Form Submit Handler
+        const form = document.getElementById('authLoginForm');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const u = document.getElementById('authUsername').value.trim();
+                const p = document.getElementById('authPassword').value;
+
+                let user = DEFAULT_AUTH;
+                try {
+                    user = JSON.parse(localStorage.getItem('aiss_admin_user')) || DEFAULT_AUTH;
+                } catch (err) {}
+
+                if (u.toLowerCase() === user.username.toLowerCase() && p === user.password) {
+                    localStorage.setItem('aiss_admin_auth', 'true');
+                    showToast('Log Masuk Berjaya! Mengalihkan ke konsol...', 'success');
+                    
+                    const btn = document.getElementById('authSubmitBtn');
+                    if (btn) {
+                        btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i><span>Mengesahkan...</span>';
+                        btn.disabled = true;
+                    }
+
+                    setTimeout(() => {
+                        window.location.replace('admin.html');
+                    }, 600);
+                } else {
+                    showToast('Nama Pengguna atau Kata Laluan Salah!', 'error');
+                }
+            });
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast-msg toast-${type}`;
+            
+            let icon = 'fa-circle-info';
+            if (type === 'success') icon = 'fa-circle-check';
+            if (type === 'error') icon = 'fa-triangle-exclamation';
+
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+
+</html>

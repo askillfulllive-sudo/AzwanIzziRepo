@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIEW PENGGUNA & TESTIMONI KAMI | AZWANIZZI SKILLFULL SERVICE (A.I.S.S)</title>
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="googleb01f225de7542cde.html">
+    <meta name="google-site-verification" content="b01f225de7542cde">
+
+    <meta name="description"
+        content="Maklum balas, review pengguna & testimoni sebenar pelanggan AZWANIZZI SKILLFULL SERVICE (A.I.S.S / SKILLFULL) servis aircond di Kota Kinabalu, Penampang, Likas, Inanam, Menggatal dan Sepanggar. Penilaian 4.9 Bintang.">
+    <meta name="keywords"
+        content="AZWANIZZI SKILLFULL SERVICE, A.I.S.S, SKILLFULL, Azwanizzi, Review Aircond Kota Kinabalu, Testimoni Servis Aircond KK">
+    <link rel="canonical" href="https://a.skillfull.workers.dev/Review.html">
+
+    <!-- Structured Data: Google Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HVACBusiness",
+      "name": "AZWANIZZI SKILLFULL SERVICE",
+      "alternateName": ["A.I.S.S", "SKILLFULL", "AISS", "AZWANIZZI"],
+      "url": "https://a.skillfull.workers.dev/"
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="Asset/Logo/LogoWeb.png">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00a3ff',
+                            dark: '#050b17',
+                            black: '#020408'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020408;
+            color: #f1f5f9;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(11, 19, 41, 0.75);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(13, 23, 49, 0.6);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 163, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 163, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 163, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #ffd700, #ffae00, #ff8800);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            box-shadow: 0 4px 20px rgba(0, 163, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 163, 255, 0.6);
+        }
+
+        .filter-btn.active {
+            background: #00a3ff;
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(0, 163, 255, 0.5);
+        }
+    </style>
+    <script>
+        // Semak tetapan awal admin sebelum render penuh (elak kelipan jika bar dimatikan)
+        try {
+            const rawSettings = localStorage.getItem('aiss_admin_settings');
+            if (rawSettings) {
+                const s = JSON.parse(rawSettings);
+                if (s.enableTopBar === false) {
+                    const style = document.createElement('style');
+                    style.id = 'early-hide-bar-style';
+                    style.innerHTML = '#topAnnouncementBar { display: none !important; }';
+                    document.head.appendChild(style);
+                }
+            }
+        } catch (e) { }
+    </script>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-blue selection:text-white">
+
+    <!-- Top Announcement Bar -->
+    <header class="sticky top-0 z-50">
+        <div id="topAnnouncementBar"
+            class="bg-gradient-to-r from-amber-500/25 via-blue-900/70 to-amber-500/20 border-b border-amber-400/30 backdrop-blur-md px-4 py-2 text-xs text-center flex items-center justify-center gap-3 flex-wrap">
+            <span
+                class="inline-flex items-center gap-1 bg-amber-400 text-black px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider animate-pulse">
+                <i class="fa-solid fa-bolt"></i> SLOT PANAS
+            </span>
+            <span id="announcementTextDisplay" class="text-amber-200 font-bold">Kunci Giliran Juruteknik Anda:</span>
+            <span id="announcementDepositDisplay"
+                class="text-yellow-300 font-extrabold underline decoration-amber-400">Deposit Serendah RM69
+                Sahaja!</span>
+            <span class="hidden md:inline text-gray-300">(Ditolak 100% daripada bil akhir • Tiada risiko)</span>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="glass-panel border-b border-white/10 px-4 md:px-8 py-3.5 shadow-2xl">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="Mainpage/index.html#home" class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-xl overflow-hidden border border-brand-blue/30 shadow-[0_0_15px_rgba(0,163,255,0.4)] flex items-center justify-center bg-brand-dark/80 p-1">
+                        <img src="Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain" />
+                    </div>
+                    <div>
+                        <span
+                            class="font-heading text-sm md:text-base font-extrabold text-white tracking-wider block leading-tight">SKILLFULL</span>
+                        <span class="text-[9px] text-gray-400 tracking-widest block uppercase">Kota Kinabalu</span>
+                    </div>
+                </a>
+
+                <div class="flex items-center gap-3">
+                    <a href="Mainpage/index.html"
+                        class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                        <span>Kembali Ke Laman Utama</span>
+                    </a>
+                    <a href="syarat-tempahan.html"
+                        class="hidden sm:flex px-3.5 py-2 rounded-xl glass-panel hover:text-amber-400 text-amber-300 text-xs font-bold transition items-center gap-1.5">
+                        <i class="fa-solid fa-calendar-check text-amber-400 text-xs"></i>
+                        <span>Syarat Tempahan</span>
+                    </a>
+                    <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20servis."
+                        target="_blank" rel="noopener noreferrer"
+                        class="btn-gradient px-4 py-2 rounded-xl text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Tulis Ulasan</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12 md:py-20 px-4 max-w-6xl mx-auto space-y-12">
+
+        <!-- Title Section -->
+        <div class="text-center max-w-3xl mx-auto">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/15 border border-yellow-400/30 text-yellow-300 text-xs font-bold uppercase tracking-widest mb-3">
+                <i class="fa-solid fa-star"></i>
+                <span>MAKLUM BALAS & TESTIMONI SEBENAR</span>
+            </div>
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                REVIEW PENGGUNA <span class="gradient-text-gold">& TESTIMONI KAMI</span>
+            </h1>
+            <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+                Pengalaman sahih daripada para pemilik kediaman, pejabat dan klinik di serata Kota Kinabalu,
+                Penampang, Likas, Inanam, Menggatal dan Sepanggar yang telah menikmati kepakaran servis A.I.S.S.
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500 mx-auto mt-4 rounded-full">
+            </div>
+        </div>
+
+        <!-- Rating Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-yellow-400 flex items-center justify-center gap-1.5">
+                    <span>4.9</span>
+                    <i class="fa-solid fa-star text-2xl text-yellow-400"></i>
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Purata
+                    Penilaian</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-white">
+                    1,500+
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Unit Berjaya
+                    Diservis</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-brand-blue">
+                    22+ Thn
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Aircond Journey
+                    (2004)</span>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl text-center border border-white/10 shadow-lg">
+                <div class="text-4xl font-heading font-black text-emerald-400">
+                    100%
+                </div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold block mt-1">Jaminan Part
+                    Tulen</span>
+            </div>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex items-center justify-center gap-2 flex-wrap">
+            <button onclick="filterReviews('all')" id="filter-all"
+                class="filter-btn active px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Semua Ulasan (0)
+            </button>
+            <button onclick="filterReviews('troubleshoot')" id="filter-troubleshoot"
+                class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Troubleshoot & Baiki
+            </button>
+            <button onclick="filterReviews('pemasangan')" id="filter-pemasangan"
+                class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Pemasangan Unit
+            </button>
+            <button onclick="filterReviews('chemical')" id="filter-chemical"
+                class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Servis Kimia Overhaul
+            </button>
+            <button onclick="filterReviews('komersial')" id="filter-komersial"
+                class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Komersial & Pejabat
+            </button>
+            <button onclick="filterReviews('gas')" id="filter-gas"
+                class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold border border-white/15 bg-white/5 hover:bg-white/15 transition">
+                Kalis Bocor & Gas
+            </button>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviewsGrid">
+            <div
+                class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-16 px-4 glass-card rounded-3xl border border-white/10 shadow-lg">
+                <div
+                    class="w-16 h-16 rounded-3xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-yellow-500/30 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-white mb-2">Ruangan Ulasan & Testimoni Pelanggan</h3>
+                <p class="text-xs text-gray-400 max-w-md mx-auto mb-6 leading-relaxed">
+
+                </p>
+                <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda."
+                    target="_blank" rel="noopener noreferrer"
+                    class="btn-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Hantar Ulasan Melalui WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Banner WhatsApp Feedback -->
+        <div
+            class="glass-card rounded-3xl p-8 border border-white/15 bg-gradient-to-r from-blue-900/40 via-black to-amber-900/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <h2 class="font-heading text-xl sm:text-2xl font-bold text-white">Pernah Menggunakan Servis Kami?</h2>
+                <p class="text-xs text-gray-300 mt-1">Kongsi maklum balas anda terus ke WhatsApp kami dan bantu
+                    pelanggan lain di Sabah membuat pilihan tepat!</p>
+            </div>
+            <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda."
+                target="_blank" rel="noopener noreferrer"
+                class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition shadow-lg flex items-center gap-2 shrink-0">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Hantar Review WhatsApp</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-white/10 py-10 px-4 text-center mt-12">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <div
+                class="w-16 h-16 mb-3 rounded-2xl overflow-hidden border border-brand-blue/30 flex items-center justify-center bg-brand-dark/80 p-1">
+                <img src="Asset/Logo/LogoWeb.png" alt="A.I.S.S Logo" class="w-full h-full object-contain" />
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white">AZWANIZZI SKILLFULL SERVICE</h3>
+            <p class="text-xs text-brand-blue uppercase mt-1">Air-Conditioner Maintenance • Kota Kinabalu</p>
+            <div class="flex gap-4 text-xs text-gray-400 my-4 flex-wrap justify-center">
+                <a href="Mainpage/index.html" class="hover:text-brand-blue">Home</a>
+                <a href="syarat-tempahan.html" class="hover:text-brand-blue">Syarat Tempahan</a>
+                <a href="Review.html" class="text-yellow-400 font-bold">Review Pengguna</a>
+                <a href="Mainpage/index.html#contact" class="hover:text-brand-blue">Hubungi Kami</a>
+            </div>
+            <p class="text-xs text-gray-500">&copy; 2026 AZWANIZZI SKILLFULL SERVICE (A.I.S.S). Hak Cipta Terpelihara.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ====== FLOATING MUSIC PLAYER ====== -->
+    <audio id="aiss-bg-music" loop preload="auto">
+        <source src="Asset/mp3/AISS_Music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Collapsed FAB (Kompak & kemas di bucu kiri bawah) -->
+    <button id="aiss-fab" onclick="aissExpandPlayer()" aria-label="Buka Music Player"
+        title="Klik untuk kawalan muzik A.I.S.S" style="
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 24px !important;
+        z-index: 9999 !important;
+        display: flex;
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 163, 255, 0.5);
+        background: linear-gradient(135deg, #070e24, #0044cc);
+        color: #fff;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 22px rgba(0, 163, 255, 0.45);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <div id="aiss-fab-disc"
+            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; animation: aissSpinDisc 4s linear infinite; animation-play-state: paused;">
+            <i class="fa-solid fa-music" style="color: #38bdf8; font-size: 18px;"></i>
+        </div>
+        <!-- Indicator pulse dot -->
+        <span id="aiss-fab-pulse"
+            style="position: absolute; top: -1px; right: -1px; width: 13px; height: 13px; border-radius: 50%; background: #10b981; border: 2px solid #070d1e; display: none; box-shadow: 0 0 8px #10b981;"></span>
+    </button>
+
+    <!-- Expanded Player Panel (Hanya muncul bila klik FAB) -->
+    <div id="aiss-music-player" style="
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 24px !important;
+        z-index: 9999 !important;
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: rgba(7, 14, 32, 0.95);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 163, 255, 0.45);
+        border-radius: 999px;
+        padding: 8px 14px 8px 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.7), 0 0 25px rgba(0,163,255,0.25);
+        user-select: none;
+        animation: aissSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    ">
+        <!-- Vinyl Disc / Minimize Button -->
+        <button onclick="aissCollapsePlayer()" aria-label="Tutup Panel Muzik" title="Klik untuk simpan panel muzik"
+            style="
+            width: 40px; height: 40px;
+            border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; cursor: pointer;
+            box-shadow: 0 0 14px rgba(0,163,255,0.55);
+            transition: transform 0.2s ease;
+        " onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+            <div id="aiss-disc" style="
+                width: 100%; height: 100%;
+                border-radius: 50%;
+                display: flex; align-items: center; justify-content: center;
+                animation: aissSpinDisc 4s linear infinite;
+                animation-play-state: paused;
+            ">
+                <i class="fa-solid fa-compact-disc" style="color:#fff; font-size:20px;"></i>
+            </div>
+        </button>
+
+        <!-- Song Info & Progress Bar -->
+        <div style="display:flex; flex-direction:column; gap:4px; min-width:115px; max-width:145px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <p
+                    style="font-size:11px; font-weight:700; color:#e2e8f0; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:0.03em;">
+                    AISS Official Theme
+                </p>
+            </div>
+            <div style="height:3px; background:rgba(255,255,255,0.15); border-radius:99px; overflow:hidden;">
+                <div id="aiss-progress"
+                    style="height:100%; width:0%; background:linear-gradient(90deg,#00a3ff,#38bdf8); border-radius:99px; transition:width 0.3s linear;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Play / Pause Button -->
+        <button id="aiss-btn" onclick="aissToggleMusic()" aria-label="Play atau Pause Muzik" title="Play / Pause" style="
+            width: 34px; height: 34px;
+            border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #00a3ff, #0055ff);
+            color: #fff; font-size: 13px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 12px rgba(0,163,255,0.45);
+            transition: transform 0.15s ease;
+        " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <i id="aiss-icon" class="fa-solid fa-play"></i>
+        </button>
+
+        <!-- Mute / Unmute Button -->
+        <button id="aiss-mute-btn" onclick="aissMuteToggle()" aria-label="Mute atau Unmute Muzik" title="Mute / Unmute"
+            style="
+            width: 30px; height: 30px;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #94a3b8; font-size: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.15s ease;
+        " onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='#fff';"
+            onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#94a3b8';">
+            <i id="aiss-mute-icon" class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <!-- Collapse / Close Button -->
+        <button onclick="aissCollapsePlayer()" aria-label="Tutup panel muzik" title="Tutup panel" style="
+            width: 26px; height: 26px;
+            border-radius: 50%; border: none;
+            background: transparent;
+            color: #64748b; font-size: 12px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: color 0.15s ease;
+        " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#64748b'">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+    </div>
+
+    <style>
+        @keyframes aissSpinDisc {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes aissSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+
+    <script>
+        // Filter reviews function
+        function filterReviews(category) {
+            const items = document.querySelectorAll('.review-item');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(b => b.classList.remove('active'));
+            const activeBtn = document.getElementById('filter-' + category);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Floating Music Player Logic
+        (function () {
+            var aissAudio = document.getElementById('aiss-bg-music');
+            var aissDisc = document.getElementById('aiss-disc');
+            var aissFabDisc = document.getElementById('aiss-fab-disc');
+            var aissIcon = document.getElementById('aiss-icon');
+            var aissProgress = document.getElementById('aiss-progress');
+            var aissMuteIcon = document.getElementById('aiss-mute-icon');
+            var aissFab = document.getElementById('aiss-fab');
+            var aissFabPulse = document.getElementById('aiss-fab-pulse');
+            var aissPanel = document.getElementById('aiss-music-player');
+            var aissPlaying = false;
+            var aissMuted = false;
+            var aissExpanded = false;
+
+            if (!aissAudio) return;
+
+            aissAudio.volume = 0.35;
+
+            function aissSetPlaying(state) {
+                aissPlaying = state;
+                if (aissDisc) aissDisc.style.animationPlayState = state ? 'running' : 'paused';
+                if (aissFabDisc) aissFabDisc.style.animationPlayState = state ? 'running' : 'paused';
+                if (aissIcon) aissIcon.className = state ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+                if (aissFabPulse) aissFabPulse.style.display = state ? 'block' : 'none';
+            }
+
+            function aissToggleMusic() {
+                if (aissPlaying) {
+                    aissAudio.pause();
+                    aissSetPlaying(false);
+                } else {
+                    aissAudio.play().then(function () {
+                        aissSetPlaying(true);
+                    }).catch(function (e) { console.warn('AISS play error:', e); });
+                }
+            }
+            window.aissToggleMusic = aissToggleMusic;
+
+            function aissMuteToggle() {
+                aissMuted = !aissMuted;
+                aissAudio.muted = aissMuted;
+                if (aissMuteIcon) {
+                    aissMuteIcon.className = aissMuted ? 'fa-solid fa-volume-xmark text-red-400' : 'fa-solid fa-volume-high';
+                }
+            }
+            window.aissMuteToggle = aissMuteToggle;
+
+            function aissExpandPlayer() {
+                aissExpanded = true;
+                if (aissFab) aissFab.style.display = 'none';
+                if (aissPanel) {
+                    aissPanel.style.display = 'flex';
+                }
+                if (!aissPlaying) {
+                    aissAudio.play().then(function () {
+                        aissSetPlaying(true);
+                    }).catch(function () { });
+                }
+            }
+            window.aissExpandPlayer = aissExpandPlayer;
+
+            function aissCollapsePlayer() {
+                aissExpanded = false;
+                if (aissPanel) aissPanel.style.display = 'none';
+                if (aissFab) {
+                    aissFab.style.display = 'flex';
+                }
+            }
+            window.aissCollapsePlayer = aissCollapsePlayer;
+
+            // --- SISTEM AUTOPLAY SEGERA ---
+            function attemptAutoplay() {
+                var promise = aissAudio.play();
+                if (promise !== undefined) {
+                    promise.then(function () {
+                        aissSetPlaying(true);
+                    }).catch(function () {
+                        aissAudio.muted = true;
+                        aissAudio.play().then(function () { }).catch(function () { });
+
+                        var unlockEvents = ['pointerdown', 'mousedown', 'touchstart', 'scroll', 'wheel', 'mousemove', 'keydown'];
+                        function handleFirstInteraction() {
+                            aissAudio.muted = false;
+                            aissMuted = false;
+                            if (aissMuteIcon) aissMuteIcon.className = 'fa-solid fa-volume-high';
+                            aissAudio.play().then(function () {
+                                aissSetPlaying(true);
+                            }).catch(function () { });
+
+                            unlockEvents.forEach(function (evt) {
+                                window.removeEventListener(evt, handleFirstInteraction, { capture: true });
+                                document.removeEventListener(evt, handleFirstInteraction, { capture: true });
+                            });
+                        }
+
+                        unlockEvents.forEach(function (evt) {
+                            window.addEventListener(evt, handleFirstInteraction, { capture: true, once: true, passive: true });
+                            document.addEventListener(evt, handleFirstInteraction, { capture: true, once: true, passive: true });
+                        });
+                    });
+                }
+            }
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                attemptAutoplay();
+            } else {
+                document.addEventListener('DOMContentLoaded', attemptAutoplay);
+            }
+            window.addEventListener('load', function () {
+                if (!aissPlaying) attemptAutoplay();
+            });
+
+            aissAudio.addEventListener('timeupdate', function () {
+                if (aissAudio.duration && aissProgress) {
+                    aissProgress.style.width = ((aissAudio.currentTime / aissAudio.duration) * 100) + '%';
+                }
+            });
+
+            aissAudio.addEventListener('error', function () {
+                console.error('AISS Music: Fail tidak dapat dimuatkan.');
+            });
+        })();
+    </script>
+    <!-- ====== END MUSIC PLAYER ====== -->
+
+    <!-- Modal Lightbox Preview Gambar Testimoni -->
+    <div id="imageLightboxModal"
+        class="hidden fixed inset-0 z-[100000] bg-black/90 backdrop-blur-lg flex items-center justify-center p-4"
+        onclick="closeImageLightbox()">
+        <div class="relative max-w-3xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+            <button onclick="closeImageLightbox()"
+                class="absolute -top-12 right-0 text-white/80 hover:text-white text-2xl p-2" aria-label="Tutup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Pratonton Testimoni Penuh"
+                class="max-w-full max-h-[80vh] rounded-2xl border border-white/20 shadow-2xl object-contain">
+            <p id="lightboxCaption" class="text-sm text-gray-300 mt-3 text-center"></p>
+        </div>
+    </div>
+
+    <!-- Script Penyegerakan Tetapan Admin & Ulasan Live Dari Firebase Realtime Database -->
+    <script>
+        // Sync admin settings (e.g. top banner)
+        function syncAdminSettings() {
+            try {
+                const raw = localStorage.getItem('aiss_admin_settings');
+                if (!raw) return;
+                const settings = JSON.parse(raw);
+                const bar = document.getElementById('topAnnouncementBar');
+                const earlyStyle = document.getElementById('early-hide-bar-style');
+
+                if (settings.enableTopBar === false) {
+                    if (bar) {
+                        bar.classList.add('hidden');
+                        bar.style.display = 'none';
+                    }
+                    if (!earlyStyle) {
+                        const s = document.createElement('style');
+                        s.id = 'early-hide-bar-style';
+                        s.innerHTML = '#topAnnouncementBar { display: none !important; }';
+                        document.head.appendChild(s);
+                    }
+                } else {
+                    if (earlyStyle) earlyStyle.remove();
+                    if (bar) {
+                        bar.classList.remove('hidden');
+                        bar.style.display = 'flex';
+                    }
+                    if (settings.announcementText) {
+                        const txtEl = document.getElementById('announcementTextDisplay');
+                        if (txtEl) txtEl.innerText = settings.announcementText;
+                    }
+                    if (settings.depositAmount) {
+                        const depEl = document.getElementById('announcementDepositDisplay');
+                        if (depEl) depEl.innerText = `Bayar Deposit Awal Serendah RM${settings.depositAmount} Dahulu!`;
+                    }
+                }
+            } catch (e) {
+                console.warn('Sync admin settings error:', e);
+            }
+        }
+
+        const FIREBASE_RTDB_URL = 'https://skillfull-e5fb3-default-rtdb.asia-southeast1.firebasedatabase.app';
+        let currentActiveCategory = 'all';
+
+        function openImageLightbox(src, caption) {
+            const modal = document.getElementById('imageLightboxModal');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+            if (img) img.src = src;
+            if (cap) cap.innerText = caption || '';
+            if (modal) modal.classList.remove('hidden');
+        }
+        window.openImageLightbox = openImageLightbox;
+
+        function closeImageLightbox() {
+            const modal = document.getElementById('imageLightboxModal');
+            if (modal) modal.classList.add('hidden');
+        }
+        window.closeImageLightbox = closeImageLightbox;
+
+        function determineCategory(serviceStr) {
+            const s = (serviceStr || '').toLowerCase();
+            if (s.includes('pasang') || s.includes('install') || s.includes('piping') || s.includes('copper')) return 'pemasangan';
+            if (s.includes('kimia') || s.includes('chemical') || s.includes('overhaul') || s.includes('cuci')) return 'chemical';
+            if (s.includes('gas') || s.includes('bocor') || s.includes('leaking') || s.includes('r32') || s.includes('r410a')) return 'gas';
+            if (s.includes('komersial') || s.includes('pejabat') || s.includes('cassette') || s.includes('klinik') || s.includes('office')) return 'komersial';
+            return 'troubleshoot';
+        }
+
+        async function loadLiveReviewsFromFirebase() {
+            const grid = document.getElementById('reviewsGrid');
+            if (!grid) return;
+
+            let reviews = [];
+            try {
+                const res = await fetch(`${FIREBASE_RTDB_URL}/reviews.json`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data) {
+                        reviews = Object.keys(data).map(k => data[k]).filter(r => r && r.status === 'published');
+                    }
+                }
+            } catch (e) {
+                console.warn('Firebase RTDB fetch error:', e);
+            }
+
+            // Jika tiada dari Firebase atau belum aktif, ambil dari localStorage
+            if (!reviews || reviews.length === 0) {
+                try {
+                    const raw = localStorage.getItem('aiss_admin_reviews');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        if (Array.isArray(parsed)) {
+                            reviews = parsed.filter(r => r.status === 'published');
+                        }
+                    }
+                } catch (e) { }
+            }
+
+            if (reviews && reviews.length > 0) {
+                const newHtml = reviews.map(r => {
+                    const category = determineCategory(r.service);
+                    const initials = (r.name || 'Pelanggan').split(' ').filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'PL';
+
+                    return `
+                        <div class="review-item glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-brand-blue/50 transition duration-300"
+                            data-category="${category}">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex text-yellow-400 text-xs gap-1">
+                                        ${'<i class="fa-solid fa-star"></i>'.repeat(r.rating || 5)}
+                                    </div>
+                                    <span class="text-[10px] px-2.5 py-0.5 rounded-full ${r.image ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'} font-bold">
+                                        ${r.image ? '📷 Testimoni Gambar' : 'Disahkan'}
+                                    </span>
+                                </div>
+
+                                ${r.image ? `
+                                    <div class="mb-4 rounded-2xl overflow-hidden border border-white/15 bg-black/50 cursor-pointer group relative shadow-lg"
+                                        onclick="openImageLightbox('${r.image}', 'Testimoni: ${r.name} (${r.service})')">
+                                        <img src="${r.image}" alt="Testimoni ${r.name}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+                                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1.5 text-white text-xs font-bold">
+                                            <i class="fa-solid fa-magnifying-glass-plus text-sm"></i>
+                                            <span>Lihat Gambar Penuh</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
+
+                                ${r.comment ? `
+                                    <p class="text-xs text-gray-200 leading-relaxed italic mb-4">
+                                        "${r.comment}"
+                                    </p>
+                                ` : ''}
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600/30 text-blue-300 flex items-center justify-center font-bold text-sm border border-blue-400/30 shrink-0">
+                                        ${initials}
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-white text-xs">${r.name}</h3>
+                                        <span class="text-[10px] text-gray-400">${r.location}</span>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] text-brand-blue font-semibold uppercase">${r.service}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                grid.innerHTML = newHtml;
+
+                // Kemaskini butang kiraan 'Semua Ulasan'
+                const filterBtnAll = document.getElementById('filter-all');
+                if (filterBtnAll) filterBtnAll.innerText = `Semua Ulasan (${reviews.length})`;
+
+                // Kekalkan kategori aktif jika ada
+                if (typeof filterReviews === 'function') {
+                    filterReviews(currentActiveCategory || 'all');
+                }
+            } else {
+                grid.innerHTML = `
+                    <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-16 px-4 glass-card rounded-3xl border border-white/10 shadow-lg">
+                        <div class="w-16 h-16 rounded-3xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-yellow-500/30 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-white mb-2">Ruangan Ulasan & Testimoni Pelanggan</h3>
+                        <p class="text-xs text-gray-400 max-w-md mx-auto mb-6 leading-relaxed">
+                            
+                        </p>
+                        <a href="https://wa.me/601118875753?text=Salam%20A.I.S.S,%20saya%20ingin%20hantar%20review%20mengenai%20servis%20anda." target="_blank" rel="noopener noreferrer"
+                            class="btn-gradient inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Hantar Ulasan Melalui WhatsApp
+                        </a>
+                    </div>
+                `;
+                const filterBtnAll = document.getElementById('filter-all');
+                if (filterBtnAll) filterBtnAll.innerText = `Semua Ulasan (0)`;
+            }
+        }
+
+        // Override filterReviews untuk simpan active state
+        const originalFilterReviews = window.filterReviews;
+        window.filterReviews = function (cat) {
+            currentActiveCategory = cat;
+            if (typeof originalFilterReviews === 'function') {
+                originalFilterReviews(cat);
+            } else {
+                const items = document.querySelectorAll('.review-item');
+                const btns = document.querySelectorAll('.filter-btn');
+                btns.forEach(b => b.classList.remove('active'));
+                const activeBtn = document.getElementById('filter-' + cat);
+                if (activeBtn) activeBtn.classList.add('active');
+
+                items.forEach(item => {
+                    if (cat === 'all' || item.getAttribute('data-category') === cat) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            syncAdminSettings();
+            loadLiveReviewsFromFirebase();
+        });
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'aiss_admin_settings') syncAdminSettings();
+            if (e.key === 'aiss_admin_reviews') loadLiveReviewsFromFirebase();
+        });
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) syncAdminSettings();
+        });
+        window.addEventListener('focus', syncAdminSettings);
+
+        try {
+            if ('BroadcastChannel' in window) {
+                const bc = new BroadcastChannel('aiss_sync_channel');
+                bc.onmessage = (e) => {
+                    if (e.data && e.data.type === 'settings_updated') syncAdminSettings();
+                    if (e.data && e.data.type === 'reviews_updated') loadLiveReviewsFromFirebase();
+                };
+            }
+        } catch (e) { }
+
+        syncAdminSettings();
+        loadLiveReviewsFromFirebase();
+    </script>
+</body>
+
+</html>
